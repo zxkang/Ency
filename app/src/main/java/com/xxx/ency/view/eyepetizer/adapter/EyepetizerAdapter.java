@@ -23,6 +23,9 @@ public class EyepetizerAdapter extends BaseQuickAdapter<VideoBean.ItemListBean, 
 
     @Override
     protected void convert(BaseViewHolder helper, VideoBean.ItemListBean item) {
+        if (item.getData().getContent() == null) {
+            return;
+        }
         helper.setText(R.id.txt_video_duration, SystemUtil.second2Minute(item.getData().getContent().getData().getDuration()));
         helper.setText(R.id.txt_video_title, item.getData().getContent().getData().getTitle());
         helper.setText(R.id.txt_video_content, item.getData().getHeader().getTitle() + " / "
