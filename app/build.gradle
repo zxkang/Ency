@@ -12,19 +12,19 @@ android {
     signingConfigs {
         config {
             //加载资源
-            Properties properties = new Properties()
-            InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
-            properties.load( inputStream )
+//            Properties properties = new Properties()
+  //          InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
+    //        properties.load( inputStream )
             //此处报错，可使用自己的key
-            def sdkDir = properties.getProperty('RELEASE_KEYSTORE_FILE')
-            def key_storePassword = properties.getProperty( 'RELEASE_KEYSTORE_PASSWORD' )
-            def key_keyAlias = properties.getProperty( 'RELEASE_KEY_ALIAS' )
-            def key_keyPassword = properties.getProperty( 'RELEASE_KEY_PASSWORD' )
+      //      def sdkDir = properties.getProperty('RELEASE_KEYSTORE_FILE')
+        //    def key_storePassword = properties.getProperty( 'RELEASE_KEYSTORE_PASSWORD' )
+          //  def key_keyAlias = properties.getProperty( 'RELEASE_KEY_ALIAS' )
+            //def key_keyPassword = properties.getProperty( 'RELEASE_KEY_PASSWORD' )
 
-            storeFile file(sdkDir)
-            storePassword key_storePassword
-            keyAlias key_keyAlias
-            keyPassword key_keyPassword
+            storeFile file("/Users/vivo/WorkSpace/Envs/android-key/dmc.keystore")
+            storePassword "young123"
+            keyAlias "dmc.keystore"
+            keyPassword "young123"
         }
     }
     compileSdkVersion 26
