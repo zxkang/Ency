@@ -119,12 +119,16 @@ public class EyepetizerDetailActivity extends BaseActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         videoBean = (VideoBean.ItemListBean.DataBeanX) bundle.get("data");
+        if (videoBean.getContent() == null
+                || videoBean.getHeader() == null) {
+            return;
+        }
         txtVideoTitle.setText(videoBean.getContent().getData().getTitle());
         txtVideoSubtitle.setText(videoBean.getHeader().getDescription());
         txtVideoContent.setText(videoBean.getContent().getData().getDescription());
         txtVideoShare.setText(videoBean.getContent().getData().getConsumption().getShareCount() + "");
         txtVideoReply.setText(videoBean.getContent().getData().getConsumption().getReplyCount() + "");
-        ImageLoader.loadAllNoPlaceHolder(mContext, videoBean.getContent().getData().getAuthor().getIcon(),imgVideoAuthor);
+        ImageLoader.loadAllNoPlaceHolder(mContext, videoBean.getContent().getData().getAuthor().getIcon(), imgVideoAuthor);
         txtVideoAuthorName.setText(videoBean.getContent().getData().getAuthor().getName());
         txtVideoAuthorDescription.setText(videoBean.getContent().getData().getAuthor().getDescription());
         tagAdapter = new EyepetizerTagAdapter();
@@ -157,7 +161,7 @@ public class EyepetizerDetailActivity extends BaseActivity {
         videoPlayerStandard.setUp(objects, 0,
                 JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, videoBean.getContent().getData().getTitle());
         ImageLoader.loadAllNoPlaceHolder(mContext, videoBean.getContent().getData().getCover().getFeed()
-                ,videoPlayerStandard.thumbImageView);
+                , videoPlayerStandard.thumbImageView);
         JZVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         JZVideoPlayer.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
     }
